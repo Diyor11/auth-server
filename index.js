@@ -10,8 +10,8 @@ app.use(express.json())
 const users = [
   {
     id: 1,
-    username: 'al',
-    password: 'ok',
+    username: 'hello',
+    password: 'world',
     refreshToken: '66f977cf508d30f6c3c39791f829a7d007ab255ef0724bbaf19975f46e7bd8bffe037e2abe824571d58ac43e732214b662b9939440fe1b716d88d98648fef560'
   }
 ];

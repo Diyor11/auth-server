@@ -47,6 +47,9 @@ const secretKey = 'your_secret_key';
 const refreshSecretKey = 'your_refresh_secret_key'; // Different secret key for refresh token
 
 // Login user
+app.get('/', () => {
+  res.json({name: "auth", v: "1.0.0"})
+})
 app.post('/api/login', async (req, res) => {
   try {
     const { username, password } = req.body;

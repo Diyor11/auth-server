@@ -1,0 +1,29 @@
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+    "username": "al",
+    "password": "ok"
+}
+###
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+    "username": "al",
+    "password": "ok"
+}
+
+###
+GET http://localhost:5000/api/whoami
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcyMTkxNjcyNiwiZXhwIjoxNzIxOTIwMzI2fQ.vtDr3mpi_af35PwDZhWpnzyz0CydoQK45foJmBIlqJM
+
+###
+POST http://localhost:5000/api/refresh
+Content-Type: application/json
+
+{
+    "refreshToken": "778c5529b8d3ea359b0912fb44c3017995baf7e48f0fb0869476095754fde7fe7e8e06b27942862c956ea0c15894f441c05aaf96c4d3b8a0548821701aa4c968"
+}
+###

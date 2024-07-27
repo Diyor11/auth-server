@@ -3,9 +3,10 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const app = express();
+const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000;
+app.use(bodyParser.json())
 app.use(cors({origin: 'http://localhost:3000'}))
-app.use(express.json())
 
 const users = [
   {
@@ -45,14 +46,14 @@ function generateRefreshToken() {
 // Replace with a secret key for JWT signing
 const secretKey = 'your_secret_key';
 const refreshSecretKey = 'your_refresh_secret_key'; // Different secret key for refresh token
-
-// Login user
 app.get('/', (req, res) => {
-  res.json({name: "auth", v: "1.0.0"})
+  res.sendFile(__dirname + '/public/index.html')
 })
+// Login user
 app.post('/api/login', async (req, res) => {
   try {
     const { username, password } = req.body;
+    
 
     const user = getUserByUsername(username);
     if (!user) {

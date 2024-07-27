@@ -10,8 +10,8 @@ POST http://localhost:5000/api/login
 Content-Type: application/json
 
 {
-    "username": "al",
-    "password": "ok"
+    "username": "hello",
+    "password": "world"
 }
 
 ###

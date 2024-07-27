@@ -10,5 +10,16 @@
 <body>
   <h1>{name: "Auth-server", v: "1.0.3"}</h1>
 </body>
+  <script>
+    fetch('http://localhost:5000/api/login', {
+      method: "post",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username: 'hello', password: 'world' })
+    }).then(res => res.json()).then(console.log).catch(console.log)
+
+
+  </script>
 
 </html>

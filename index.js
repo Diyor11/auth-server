@@ -17,6 +17,34 @@ const users = [
   }
 ];
 
+const todos = [
+  {id: 1, text: 'Hello wordl'},
+]
+
+app.get('/api/todos', (req, res) => res.status(200).send(todos));
+
+app.post('/api/todos', (req, res) => {
+  const newTodo = { ...req.body, id: todos.length + 1 };
+  todos.push(newTodo);
+  res.status(201).send(newTodo); // Send the newly created todo
+});
+
+app.get('/api/todos/:id', (req, res) => {
+  const todo = todos.findIndex(({id}) => id == req.params.id)
+  if(todo !== -1) return res.send(todos[todo]);
+  res.status(404).send({messgae: "Not Found todo"})
+});
+
+app.delete('/api/todos/:id', (req, res) => {
+  const todo = todos.findIndex(({id}) => id == req.params.id)
+  if(todo !== -1) {
+    todos.splice(todo, 1)
+    return res.send(todos[todo])
+  };
+  res.status(404).send({messgae: "Not Found todo"})
+});
+
+
 function getUserByUsername(username) {
   return users.find(user => user.username === username);
 }

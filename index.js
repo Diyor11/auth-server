@@ -13,7 +13,8 @@ const users = [
     id: 1,
     username: 'hello',
     password: 'world',
-    refreshToken: '66f977cf508d30f6c3c39791f829a7d007ab255ef0724bbaf19975f46e7bd8bffe037e2abe824571d58ac43e732214b662b9939440fe1b716d88d98648fef560'
+    refreshToken: '66f977cf508d30f6c3c39791f829a7d007ab255ef0724bbaf19975f46e7bd8bffe037e2abe824571d58ac43e732214b662b9939440fe1b716d88d98648fef560',
+    role: 'USER'
   }
 ];
 
@@ -54,12 +55,13 @@ function getUserByRefreshToken(refreshToken) {
   return users.find(user => user.refreshToken === refreshToken);
 }
 
-function addUser(username, password) {
+function addUser(username, password, role) {
   const newUser = {
     id: users.length ? users[users.length - 1].id + 1 : 1,
     username,
     password: password, // Replace with hashing function
     refreshToken: generateRefreshToken(), // Replace with token generation function
+    role: role
   };
   users.push(newUser);
   return newUser;
@@ -110,14 +112,14 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/register', async (req, res) => {
   try {
     
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
 
     const existingUser = getUserByUsername(username);
     if (existingUser) {
       return res.status(400).json({ message: 'Username already exists' });
     }
 
-    const newUser = addUser(username, password);
+    const newUser = addUser(username, password, role);
 
     // Generate access token and refresh token
     const accessToken = jwt.sign({ userId: newUser.id }, secretKey, { expiresIn: '1h' });
